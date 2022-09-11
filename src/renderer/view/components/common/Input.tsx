@@ -7,6 +7,8 @@ display: flex;
 flex-direction: column;
 border-radius: 5px;
 box-shadow: 3px 1px 4px 4px rgba(128,128,128,0.6);
+background-color: #fff;
+
 padding: 0.5rem 0;
 >label{
   color:${props => props.theme.font.label};
