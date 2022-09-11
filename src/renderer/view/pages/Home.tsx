@@ -9,6 +9,7 @@ const HomeWrapper = styled.div`
   }
 `;
 
+
 const Home = () => {
   return (
     <HomeWrapper>
