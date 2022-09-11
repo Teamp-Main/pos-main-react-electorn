@@ -35,6 +35,7 @@ background-color:${props=> props.theme.main.gray};
 `
 
 const Login = () => {
+  const navigate = useNavigate()
   const [id,setId] = useState<string>('')
   const [pwd,setPwd] = useState<string> ('')
   const onClick = () =>{
@@ -43,6 +44,7 @@ const Login = () => {
   }
   const navigage = useNavigate()
   return <LoginContainer>
+    <a onClick={() =>navigate(-1)}>back</a>
     <div className='login-form'>
       <Input state={id} setState={setId} label='아이디' inputType="text" />
       <Input state={pwd} setState={setPwd} label='아이디' inputType="password" />

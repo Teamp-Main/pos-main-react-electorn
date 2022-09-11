@@ -4,9 +4,10 @@ import Button from "../common/Button";
 import Input from "../common/Input";
 
 const InputButtonWrapper = styled.div`
+
   display: flex;
   flex-direction: row;
-  gap: 100px;
+  gap: 10px;
 `
 
 interface IProps {
@@ -21,7 +22,7 @@ const InputButton = ({item, label, state, inputType, setState}: IProps) => {
   const onClick = () => {};
   return (
     <InputButtonWrapper>
-      <Input label={label} state={state} inputType={inputType} setState={setState}/>
+      <Input style={{"marginRight":"15rem"}}  label={label} state={state} inputType={inputType} setState={setState}/>
       <Button item={item} onClick={onClick} />
     </InputButtonWrapper>
   )
