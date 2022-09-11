@@ -1,5 +1,4 @@
 import { DefaultTheme } from 'styled-components';
-
  const theme: DefaultTheme = {
   main: {
     purple: '#706FD3',
@@ -9,5 +8,6 @@ import { DefaultTheme } from 'styled-components';
     label:'#111'
   }
 };
+
 
 export default theme

@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from 'renderer/view/pages/home';
+import Home from 'renderer/view/pages/Home';
 import Login from 'renderer/view/pages/Login';
 import SignUp from 'renderer/view/pages/SignUp';
 
