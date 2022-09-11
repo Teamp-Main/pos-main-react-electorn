@@ -1,11 +1,31 @@
 module.exports = {
-  extends: 'erb',
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'erb'
+  ],
+  plugins: ['prettier', '@typescript-eslint'],
   rules: {
     // A temporary hack related to IDE not resolving correct package.json
     'import/no-extraneous-dependencies': 'off',
     'import/no-unresolved': 'error',
     // Since React 17 and typescript 4.1 you can safely disable the rule
     'react/react-in-jsx-scope': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+        semi: true,
+        useTabs: false,
+        tabWidth: 2,
+        printWidth: 80,
+        bracketSpacing: true,
+        arrowParens: 'avoid',
+        endOfLine: 'auto',
+      },
+    ],
+    'linebreak-style': 0,
   },
   parserOptions: {
     ecmaVersion: 2020,
@@ -13,6 +33,7 @@ module.exports = {
     project: './tsconfig.json',
     tsconfigRootDir: __dirname,
     createDefaultProgram: true,
+    parser: '@typescript-eslint/parser',
   },
   settings: {
     'import/resolver': {
