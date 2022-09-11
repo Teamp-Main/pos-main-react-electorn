@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from 'renderer/view/pages/home';
 import Login from 'renderer/view/pages/Login';
+import SignUp from 'renderer/view/pages/SignUp';
 
 interface RouterDefine {
   path: string;
@@ -14,7 +15,7 @@ const ROUTER: RouterDefine[] = [
   },
   {
     path: '/sign-up',
-    Component: Login,
+    Component: SignUp,
   },
   {
     path: '/',

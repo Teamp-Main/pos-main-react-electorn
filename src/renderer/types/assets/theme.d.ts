@@ -6,5 +6,8 @@ declare module 'styled-components' {
       purple: string;
       gray: string;
     };
+    font:{
+      label:string
+    }
   }
 }
