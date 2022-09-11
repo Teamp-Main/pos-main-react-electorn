@@ -13,6 +13,10 @@ const ROUTER: RouterDefine[] = [
     Component: Login,
   },
   {
+    path: '/sign-up',
+    Component: Login,
+  },
+  {
     path: '/',
     Component: Home,
   },
