@@ -1,12 +1,14 @@
 import { HashRouter as ReactRouter, Routes, Route } from 'react-router-dom';
-import Home from 'renderer/view/pages/home';
+import ROUTER from './routes';
 
 const Router = () => (
-<ReactRouter>
-  <Routes>
-    <Route path='/' element={<Home/>}/>
-  </Routes>
-</ReactRouter>
+  <ReactRouter>
+    <Routes>
+      {ROUTER.map(({ path, Component }) => (
+        <Route key={path} path={path} element={<Component />} />
+      ))}
+    </Routes>
+  </ReactRouter>
 );
 
 export default Router;
