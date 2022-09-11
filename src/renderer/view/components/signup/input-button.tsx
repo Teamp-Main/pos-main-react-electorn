@@ -1,31 +1,44 @@
-import React from "react";
-import styled from "styled-components";
-import Button from "../common/Button";
-import Input from "../common/Input";
+import React from 'react';
+import styled from 'styled-components';
+import Button from '../common/Button';
+import Input from '../common/Input';
 
 const InputButtonWrapper = styled.div`
-
   display: flex;
-  flex-direction: row;
   gap: 10px;
-`
+  .sign-up-flex-1 {
+    flex: 2 1 auto;
+  }
+  .sign-up-flex-2 {
+    flex: 1 1 auto;
+  }
+`;
 
 interface IProps {
   item: string;
   label: string;
   state: string;
-  inputType:'text' | 'number' | 'password'
-  setState: React.Dispatch<React.SetStateAction<string >>
+  inputType: 'text' | 'number' | 'password';
+  setState: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const InputButton = ({item, label, state, inputType, setState}: IProps) => {
+const InputButton = ({ item, label, state, inputType, setState }: IProps) => {
   const onClick = () => {};
   return (
     <InputButtonWrapper>
-      <Input style={{"marginRight":"15rem"}}  label={label} state={state} inputType={inputType} setState={setState}/>
-      <Button item={item} onClick={onClick} />
+      <div className="sign-up-flex-1">
+        <Input
+          label={label}
+          state={state}
+          inputType={inputType}
+          setState={setState}
+        />
+      </div>
+      <div className="sign-up-flex-2">
+        <Button isActive item={item} onClick={onClick} />
+      </div>
     </InputButtonWrapper>
-  )
-}
+  );
+};
 
 export default InputButton;
