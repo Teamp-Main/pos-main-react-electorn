@@ -17,13 +17,22 @@ const InputButtonWrapper = styled.div`
 interface IProps {
   item: string;
   label: string;
+  isActive: boolean;
+  onClick: () => void;
   state: string;
   inputType: 'text' | 'number' | 'password';
   setState: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const InputButton = ({ item, label, state, inputType, setState }: IProps) => {
-  const onClick = () => {};
+const InputButton = ({
+  item,
+  label,
+  isActive,
+  state,
+  inputType,
+  setState,
+  onClick,
+}: IProps) => {
   return (
     <InputButtonWrapper>
       <div className="sign-up-flex-1">
@@ -35,7 +44,7 @@ const InputButton = ({ item, label, state, inputType, setState }: IProps) => {
         />
       </div>
       <div className="sign-up-flex-2">
-        <Button isActive item={item} onClick={onClick} />
+        <Button isActive={isActive} item={item} onClick={onClick} />
       </div>
     </InputButtonWrapper>
   );

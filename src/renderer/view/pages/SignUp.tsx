@@ -1,5 +1,5 @@
 // import React from 'react';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/common/Button';
@@ -18,13 +18,21 @@ const SignUpWrapper = styled.div`
 
 const SignUpContainer = styled.div`
   background-color: #fff;
-  padding: 3rem;
-  border-radius: 5px;
+  padding: 2.4vw;
+  border-radius: 0.25vw;
   display: flex;
   width: 35%;
   flex-direction: column;
-  gap: 30px;
+  gap: 1.5vw;
   height: 48%;
+  .register-button-flex {
+    height: 3vw;
+  }
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 const SignUp = () => {
@@ -34,16 +42,63 @@ const SignUp = () => {
   const [pwcheckinput, setPwCheckInput] = useState<string>('');
   const [emailinput, setEmailInput] = useState<string>('');
   const [authnuminput, setAuthNumInput] = useState<string>('');
+  const [idbtActive, setIdbtActive] = useState<boolean>(true);
+  const [emailbtActive, setEmailbtActive] = useState<boolean>(true);
+  const [authbtActive, setAuthbtActive] = useState<boolean>(true);
+  const [registerbtActive, setRegisterbtActive] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
-  const onClick = () => {};
+  const onClick = (
+    state: string,
+    inputType: 'id' | 'email' | 'auth' | 'register'
+  ) => {
+    switch (inputType) {
+      case 'id': {
+        // server api 호출
+        // 임시 테스트 코드
+        if (state !== null) {
+          setIdbtActive(false);
+        }
+        break;
+      }
+      case 'email': {
+        // server api 호출
+        // 임시 테스트 코드
+        if (state !== null) {
+          setEmailbtActive(false);
+        }
+        break;
+      }
+      case 'auth': {
+        // server api 호출
+        // 임시 테스트 코드
+        if (state !== null) {
+          setAuthbtActive(false);
+          setRegisterbtActive(true);
+        }
+        break;
+      }
+      case 'register': {
+        // server api 호출
+        navigate(-1);
+        break;
+      }
+      default: {
+        break;
+      }
+    }
+  };
 
   return (
     <SignUpWrapper>
-      <button onClick={() => navigate(-1)}> 뒤로가기</button>
       <SignUpContainer>
-        <h1>회원가입</h1>
+        <div className="header">
+          <h1>회원가입</h1>
+          <div>
+            <Button isActive item="뒤로가기" onClick={() => navigate(-1)} />
+          </div>
+        </div>
         <Input
           label="이름"
           state={nameinput}
@@ -53,7 +108,9 @@ const SignUp = () => {
         <InputButton
           label="아이디"
           item="중복확인"
+          isActive={idbtActive}
           state={idinput}
+          onClick={() => onClick(idinput, 'id')}
           inputType="text"
           setState={setIdInput}
         />
@@ -72,6 +129,8 @@ const SignUp = () => {
         <InputButton
           item="인증받기"
           label="이메일"
+          isActive={emailbtActive}
+          onClick={() => onClick(emailinput, 'email')}
           state={emailinput}
           setState={setEmailInput}
           inputType="text"
@@ -79,11 +138,19 @@ const SignUp = () => {
         <InputButton
           item="인증확인"
           label="인증번호"
+          isActive={authbtActive}
+          onClick={() => onClick(authnuminput, 'auth')}
           state={authnuminput}
           setState={setAuthNumInput}
           inputType="text"
         />
-        <Button item="가입하기" onClick={onClick} />
+        <div className="register-button-flex">
+          <Button
+            isActive={registerbtActive}
+            item="가입하기"
+            onClick={() => onClick('', 'register')}
+          />
+        </div>
       </SignUpContainer>
     </SignUpWrapper>
   );
