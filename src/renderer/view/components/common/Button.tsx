@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -7,10 +8,10 @@ const ButtonContainer = styled.button<{ isActive: boolean }>`
   border: none;
   width: 100%;
   height: 100%;
-  left: 467px;
-  top: 87px;
-  border-radius: 4px;
-  padding: 10px 20px 10px 20px;
+  left: 23.35vw;
+  top: 4.35vw;
+  border-radius: 0.2vw;
+  padding: 0.5vw 1vw;
   cursor: pointer;
   > span {
     color: #fff;
