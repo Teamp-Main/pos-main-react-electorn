@@ -1,10 +1,12 @@
 // import React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/common/Button';
 import Input from '../components/common/Input';
 import InputButton from '../components/signup/input-button';
+import PwCheckComponent from '../components/signup/password-check-component';
+import PwComponent from '../components/signup/password-component';
 
 const SignUpWrapper = styled.div`
   display: flex;
@@ -24,7 +26,6 @@ const SignUpContainer = styled.div`
   width: 35%;
   flex-direction: column;
   gap: 1.5vw;
-  height: 48%;
   .register-button-flex {
     height: 3vw;
   }
@@ -32,6 +33,10 @@ const SignUpContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+  .text {
+    font-size: 11px;
+    color: grey;
   }
 `;
 
@@ -46,6 +51,8 @@ const SignUp = () => {
   const [emailbtActive, setEmailbtActive] = useState<boolean>(true);
   const [authbtActive, setAuthbtActive] = useState<boolean>(true);
   const [registerbtActive, setRegisterbtActive] = useState<boolean>(false);
+  const [isMatch, setIsMatch] = useState<boolean>(true);
+  const [pwformcheck, setPwFormCheck] = useState<boolean>(true);
 
   const navigate = useNavigate();
 
@@ -57,7 +64,7 @@ const SignUp = () => {
       case 'id': {
         // server api 호출
         // 임시 테스트 코드
-        if (state !== null) {
+        if (state.length !== 0) {
           setIdbtActive(false);
         }
         break;
@@ -65,7 +72,7 @@ const SignUp = () => {
       case 'email': {
         // server api 호출
         // 임시 테스트 코드
-        if (state !== null) {
+        if (state.length !== 0) {
           setEmailbtActive(false);
         }
         break;
@@ -73,7 +80,7 @@ const SignUp = () => {
       case 'auth': {
         // server api 호출
         // 임시 테스트 코드
-        if (state !== null) {
+        if (state.length !== 0) {
           setAuthbtActive(false);
           setRegisterbtActive(true);
         }
@@ -89,6 +96,24 @@ const SignUp = () => {
       }
     }
   };
+
+  const matchPW = (pw: string, pw_check: string) => {
+    const bool = pw !== pw_check ? setIsMatch(false) : setIsMatch(true);
+  };
+
+  const pwFormCheck = (pw: string) => {
+    const reg = new RegExp(
+      /(?=.*\d{1,50})(?=.*[~`!@#$%^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/
+    );
+    if (pw.length !== 0) {
+      const bool = reg.test(pw) ? setPwFormCheck(true) : setPwFormCheck(false);
+    }
+  };
+
+  useEffect(() => {
+    matchPW(pwinput, pwcheckinput);
+    pwFormCheck(pwinput);
+  }, [pwinput, pwcheckinput]);
 
   return (
     <SignUpWrapper>
@@ -114,15 +139,20 @@ const SignUp = () => {
           inputType="text"
           setState={setIdInput}
         />
-        <Input
-          label="비밀번호"
-          state={pwinput}
+        <PwComponent
+          label="비밀번호*"
+          pw_state={pwinput}
+          form_check_state={pwformcheck}
           setState={setPwInput}
           inputType="password"
         />
-        <Input
+        <text className="text">
+          *비밀번호는 8자 이상, 숫자 1자 이상, 특수문자 1자 이상
+        </text>
+        <PwCheckComponent
           label="비밀번호 확인"
-          state={pwcheckinput}
+          pw_check_state={pwcheckinput}
+          match_state={isMatch}
           setState={setPwCheckInput}
           inputType="password"
         />
