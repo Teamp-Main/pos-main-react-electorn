@@ -7,7 +7,7 @@ interface IProps {
   pw_state: string;
   form_check_state: boolean;
   setState: React.Dispatch<React.SetStateAction<string>>;
-  inputType: 'text' | 'number' | 'password';
+  inputType: 'password';
 }
 
 const PwInputContainer = styled.div`
