@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/common/Button';
 import Input from '../components/common/Input';
+import EmailComponent from '../components/signup/email-component';
 import InputButton from '../components/signup/input-button';
 import PwCheckComponent from '../components/signup/password-check-component';
 import PwComponent from '../components/signup/password-component';
@@ -53,6 +54,7 @@ const SignUp = () => {
   const [registerbtActive, setRegisterbtActive] = useState<boolean>(false);
   const [isMatch, setIsMatch] = useState<boolean>(true);
   const [pwformcheck, setPwFormCheck] = useState<boolean>(true);
+  const [emailformcheck, setEmailFormCheck] = useState<boolean>(true);
 
   const navigate = useNavigate();
 
@@ -110,10 +112,23 @@ const SignUp = () => {
     }
   };
 
+  const emailFormCheck = (email: string) => {
+    const reg = new RegExp('^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$');
+    if (email.length !== 0) {
+      const bool = reg.test(email)
+        ? setEmailFormCheck(true)
+        : setEmailFormCheck(false);
+    }
+  };
+
   useEffect(() => {
     matchPW(pwinput, pwcheckinput);
     pwFormCheck(pwinput);
   }, [pwinput, pwcheckinput]);
+
+  useEffect(() => {
+    emailFormCheck(emailinput);
+  }, [emailinput]);
 
   return (
     <SignUpWrapper>
@@ -156,12 +171,13 @@ const SignUp = () => {
           setState={setPwCheckInput}
           inputType="password"
         />
-        <InputButton
+        <EmailComponent
           item="인증받기"
           label="이메일"
           isActive={emailbtActive}
           onClick={() => onClick(emailinput, 'email')}
-          state={emailinput}
+          email_state={emailinput}
+          email_form_state={emailformcheck}
           setState={setEmailInput}
           inputType="text"
         />
