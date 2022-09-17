@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
+import PasswordIcon from '../../../assets/img/password-icon.svg';
 
 const InputContainer = styled.fieldset`
   width: 100%;
@@ -15,10 +16,25 @@ const InputContainer = styled.fieldset`
     font-size: 13px;
     padding: 0 1rem;
   }
-  > input {
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+
+  .input-form {
+    display: flex;
+    width: 100%;
+    align-items: center;
+
+    > input {
+      width: 100%;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+
+    .password-icon {
+      cursor: pointer;
+      margin: 0 1rem;
+      width: 20px;
+      height: 20px;
+    }
   }
 `;
 
@@ -32,7 +48,7 @@ interface IProps {
 
 const Input = ({ state, setState, inputType, label, style }: IProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-
+  const [showPwd, setShowPwd] = useState<boolean>(false);
   const checkingType = () => {
     switch (inputType) {
       case 'password':
@@ -45,13 +61,22 @@ const Input = ({ state, setState, inputType, label, style }: IProps) => {
   return (
     <InputContainer style={style}>
       <label>{label}</label>
-      <input
-        ref={inputRef}
-        type={inputType}
-        value={state}
-        onChange={() => checkingType()}
-      />
-      <img />
+      <div className="input-form">
+        <input
+          ref={inputRef}
+          type={showPwd ? 'text' : inputType}
+          value={state}
+          onChange={() => checkingType()}
+        />
+        {inputType === 'password' && (
+          <img
+            className="password-icon"
+            src={PasswordIcon}
+            alt="password-icon"
+            onClick={() => setShowPwd(prev => !prev)}
+          />
+        )}
+      </div>
     </InputContainer>
   );
 };

@@ -14,7 +14,7 @@ const PwInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  .text {
+  .pwd-text {
     font-size: 11px;
     color: red;
   }
@@ -27,26 +27,18 @@ const PwComponent = ({
   inputType,
   form_check_state,
 }: IProps) => {
-  if (form_check_state === false) {
-    return (
-      <PwInputContainer>
-        <Input
-          label={label}
-          state={pw_state}
-          setState={setState}
-          inputType={inputType}
-        />
-        <text className="text">비밀번호 형식이 틀렸습니다.</text>
-      </PwInputContainer>
-    );
-  }
   return (
-    <Input
-      label={label}
-      state={pw_state}
-      setState={setState}
-      inputType={inputType}
-    />
+    <PwInputContainer>
+      <Input
+        label={label}
+        state={pw_state}
+        setState={setState}
+        inputType={inputType}
+      />
+      {!form_check_state && (
+        <span className="pwd-text">비밀번호 형식이 틀렸습니다.</span>
+      )}
+    </PwInputContainer>
   );
 };
 

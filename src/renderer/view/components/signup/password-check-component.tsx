@@ -35,7 +35,7 @@ const PwCheckComponent = ({
           setState={setState}
           inputType={inputType}
         />
-        <text className="text">비밀번호가 일치하지 않습니다.</text>
+        <span className="text">비밀번호가 일치하지 않습니다.</span>
       </PwInputContainer>
     );
   }

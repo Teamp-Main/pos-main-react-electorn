@@ -45,7 +45,7 @@ const EmailComponent = ({
           setState={setState}
           inputType={inputType}
         />
-        <text className="text">이메일 형식이 맞지 않습니다.</text>
+        <span className="text">이메일 형식이 맞지 않습니다.</span>
       </EmailInputContainer>
     );
   }
