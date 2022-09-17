@@ -1,4 +1,5 @@
 // import React from 'react';
+import { regPwd } from 'data/rex';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -121,14 +122,11 @@ const SignUp = () => {
     }
   };
 
-  useEffect(() => {
-    matchPW(pwinput, pwcheckinput);
-    pwFormCheck(pwinput);
-  }, [pwinput, pwcheckinput]);
-
-  useEffect(() => {
-    emailFormCheck(emailinput);
-  }, [emailinput]);
+  const checkingPwd = (ref: string) => {
+    const checking = regPwd.test(ref);
+    setPwFormCheck(checking);
+    return setPwInput(ref);
+  };
 
   return (
     <SignUpWrapper>
@@ -158,7 +156,7 @@ const SignUp = () => {
           label="비밀번호*"
           pw_state={pwinput}
           form_check_state={pwformcheck}
-          setState={setPwInput}
+          setState={checkingPwd}
           inputType="password"
         />
         <text className="text">

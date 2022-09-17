@@ -25,12 +25,12 @@ const InputContainer = styled.fieldset`
 interface IProps {
   label: string;
   state: string;
-  setState: React.Dispatch<React.SetStateAction<string>>;
+  setState: (ref: string) => void;
   inputType: 'text' | 'number' | 'password';
   style?: React.CSSProperties;
 }
 
-const Input = ({ style, state, setState, inputType, label }: IProps) => {
+const Input = ({ state, setState, inputType, label, style }: IProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const checkingType = () => {

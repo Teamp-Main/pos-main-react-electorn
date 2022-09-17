@@ -6,7 +6,7 @@ interface IProps {
   label: string;
   pw_state: string;
   form_check_state: boolean;
-  setState: React.Dispatch<React.SetStateAction<string>>;
+  setState: (ref: string) => void;
   inputType: 'password';
 }
 
