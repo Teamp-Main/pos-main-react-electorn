@@ -159,9 +159,9 @@ const SignUp = () => {
           setState={checkingPwd}
           inputType="password"
         />
-        <text className="text">
+        <span className="text">
           *비밀번호는 8자 이상, 숫자 1자 이상, 특수문자 1자 이상
-        </text>
+        </span>
         <PwCheckComponent
           label="비밀번호 확인"
           pw_check_state={pwcheckinput}
