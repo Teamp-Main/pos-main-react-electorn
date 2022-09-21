@@ -17,7 +17,7 @@ const SignUpWrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
-  background-color: ${props => props.theme.main.gray};
+  background-color: ${props => props.theme.background.gray};
 `;
 
 const SignUpContainer = styled.div`

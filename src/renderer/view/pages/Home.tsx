@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const HomeWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   a {
     margin: 1rem;
   }
 `;
-
 
 const Home = () => {
   return (

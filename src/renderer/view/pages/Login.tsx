@@ -11,7 +11,7 @@ const LoginContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
-  background-color: ${props => props.theme.main.gray};
+  background-color: ${props => props.theme.background.gray};
   .login-form {
     background-color: #fff;
     display: flex;
@@ -42,7 +42,9 @@ const Login = () => {
   const navigage = useNavigate();
   return (
     <LoginContainer>
-      <button onClick={() => navigage(-1)}>뒤로가기</button>
+      <button type="button" onClick={() => navigage(-1)}>
+        뒤로가기
+      </button>
       <div className="login-form">
         <h1>로그인</h1>
         <Input state={id} setState={setId} label="아이디" inputType="text" />
