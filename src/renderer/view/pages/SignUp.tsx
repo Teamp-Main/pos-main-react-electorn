@@ -1,13 +1,13 @@
 // import React from 'react';
-import { regPwd } from 'data/rex';
-import { useEffect, useState } from 'react';
+import { regEmail, regPwd } from 'data/rex';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../components/common/Button';
 import Input from '../components/common/Input';
+import Modal from '../components/common/Modal';
 import EmailComponent from '../components/signup/email-component';
 import InputButton from '../components/signup/input-button';
-import PwCheckComponent from '../components/signup/password-check-component';
 import PwComponent from '../components/signup/password-component';
 
 const SignUpWrapper = styled.div`
@@ -56,8 +56,29 @@ const SignUp = () => {
   const [isMatch, setIsMatch] = useState<boolean>(true);
   const [pwformcheck, setPwFormCheck] = useState<boolean>(true);
   const [emailformcheck, setEmailFormCheck] = useState<boolean>(true);
+  const [authcheck, setAuthCheck] = useState<boolean>(false);
+  const [IDmodalOpen, setIDModalOpen] = useState<boolean>(false);
+  const [RGmodalOpen, setRGModalOpen] = useState<boolean>(false);
 
   const navigate = useNavigate();
+
+  const openIDModal = (btnactive: boolean) => {
+    return !btnactive && setIDModalOpen(true);
+  };
+
+  const openSignUpModal = (btnactive: boolean) => {
+    return btnactive && setRGModalOpen(true);
+  };
+
+  const closeModal = (
+    setState: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
+    return setState(false);
+  };
+
+  const closeSignUpModal = () => {
+    return [navigate(-1), setRGModalOpen(false)];
+  };
 
   const onClick = (
     state: string,
@@ -67,32 +88,25 @@ const SignUp = () => {
       case 'id': {
         // server api 호출
         // 임시 테스트 코드
-        if (state.length !== 0) {
-          setIdbtActive(false);
-        }
-        break;
+        const idbt = state.length >= 6 ? setIdbtActive(false) : null;
+        const modalactive = state.length < 6 ? openIDModal(!idbtActive) : null;
+        return [idbt, modalactive];
       }
       case 'email': {
         // server api 호출
         // 임시 테스트 코드
-        if (state.length !== 0) {
-          setEmailbtActive(false);
-        }
-        break;
+        return emailformcheck && setEmailbtActive(false);
       }
       case 'auth': {
         // server api 호출
         // 임시 테스트 코드
-        if (state.length !== 0) {
-          setAuthbtActive(false);
-          setRegisterbtActive(true);
-        }
-        break;
+        const authbt = authcheck && setAuthbtActive(false);
+        const registerbt = authcheck && setRegisterbtActive(true);
+        return [authbt, registerbt];
       }
       case 'register': {
         // server api 호출
-        navigate(-1);
-        break;
+        return openSignUpModal(registerbtActive);
       }
       default: {
         break;
@@ -100,32 +114,28 @@ const SignUp = () => {
     }
   };
 
-  const matchPW = (pw: string, pw_check: string) => {
-    const bool = pw !== pw_check ? setIsMatch(false) : setIsMatch(true);
-  };
-
-  const pwFormCheck = (pw: string) => {
-    const reg = new RegExp(
-      /(?=.*\d{1,50})(?=.*[~`!@#$%^&*()-+=]{1,50})(?=.*[a-zA-Z]{2,50}).{8,50}$/
-    );
-    if (pw.length !== 0) {
-      const bool = reg.test(pw) ? setPwFormCheck(true) : setPwFormCheck(false);
-    }
-  };
-
-  const emailFormCheck = (email: string) => {
-    const reg = new RegExp('^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$');
-    if (email.length !== 0) {
-      const bool = reg.test(email)
-        ? setEmailFormCheck(true)
-        : setEmailFormCheck(false);
-    }
+  const matchPW = (ref: string) => {
+    const checking = pwinput === ref;
+    setIsMatch(checking);
+    return setPwCheckInput(ref);
   };
 
   const checkingPwd = (ref: string) => {
     const checking = regPwd.test(ref);
     setPwFormCheck(checking);
     return setPwInput(ref);
+  };
+
+  const checkingEmail = (ref: string) => {
+    const checking = regEmail.test(ref);
+    setEmailFormCheck(checking);
+    return setEmailInput(ref);
+  };
+
+  const checkingAuth = (ref: string) => {
+    const checking = ref.length === 6;
+    setAuthCheck(checking);
+    return setAuthNumInput(ref);
   };
 
   return (
@@ -152,22 +162,32 @@ const SignUp = () => {
           inputType="text"
           setState={setIdInput}
         />
+        <Modal
+          open={IDmodalOpen}
+          exit={() => closeModal(setIDModalOpen)}
+          header="잘못된 ID"
+          text="이미 가입된 ID 입니다."
+          btntext="close"
+          close={() => closeModal(setIDModalOpen)}
+        />
         <PwComponent
           label="비밀번호*"
           pw_state={pwinput}
           form_check_state={pwformcheck}
           setState={checkingPwd}
           inputType="password"
+          text="비밀번호 형식이 틀렸습니다."
         />
         <span className="text">
           *비밀번호는 8자 이상, 숫자 1자 이상, 특수문자 1자 이상
         </span>
-        <PwCheckComponent
+        <PwComponent
           label="비밀번호 확인"
-          pw_check_state={pwcheckinput}
-          match_state={isMatch}
-          setState={setPwCheckInput}
+          pw_state={pwcheckinput}
+          form_check_state={isMatch}
+          setState={matchPW}
           inputType="password"
+          text="비밀번호가 일치하지 않습니다."
         />
         <EmailComponent
           item="인증받기"
@@ -176,7 +196,7 @@ const SignUp = () => {
           onClick={() => onClick(emailinput, 'email')}
           email_state={emailinput}
           email_form_state={emailformcheck}
-          setState={setEmailInput}
+          setState={checkingEmail}
           inputType="text"
         />
         <InputButton
@@ -185,7 +205,7 @@ const SignUp = () => {
           isActive={authbtActive}
           onClick={() => onClick(authnuminput, 'auth')}
           state={authnuminput}
-          setState={setAuthNumInput}
+          setState={checkingAuth}
           inputType="text"
         />
         <div className="register-button-flex">
@@ -195,6 +215,14 @@ const SignUp = () => {
             onClick={() => onClick('', 'register')}
           />
         </div>
+        <Modal
+          open={RGmodalOpen}
+          close={closeSignUpModal}
+          header="회원가입"
+          text="입력하신 정보로 가입하시겠습니까?"
+          btntext="가입하기"
+          exit={() => closeModal(setRGModalOpen)}
+        />
       </SignUpContainer>
     </SignUpWrapper>
   );
