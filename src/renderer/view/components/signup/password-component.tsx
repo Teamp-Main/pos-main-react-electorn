@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import Input from '../common/Input';
 
@@ -8,6 +7,7 @@ interface IProps {
   form_check_state: boolean;
   setState: (ref: string) => void;
   inputType: 'password';
+  text: string;
 }
 
 const PwInputContainer = styled.div`
@@ -26,6 +26,7 @@ const PwComponent = ({
   setState,
   inputType,
   form_check_state,
+  text,
 }: IProps) => {
   return (
     <PwInputContainer>
@@ -35,9 +36,7 @@ const PwComponent = ({
         setState={setState}
         inputType={inputType}
       />
-      {!form_check_state && (
-        <span className="pwd-text">비밀번호 형식이 틀렸습니다.</span>
-      )}
+      {!form_check_state && <span className="pwd-text">{text}</span>}
     </PwInputContainer>
   );
 };
