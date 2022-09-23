@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import Button from '../common/Button';
 import Input from '../common/Input';
@@ -21,7 +20,7 @@ interface IProps {
   onClick: () => void;
   state: string;
   inputType: 'text' | 'number' | 'password';
-  setState: React.Dispatch<React.SetStateAction<string>>;
+  setState: (ref: string) => void;
 }
 
 const InputButton = ({
