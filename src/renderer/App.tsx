@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 
 import GlobalStyle from './assets/global/GlobalStyle';
@@ -19,14 +20,12 @@ const ViewContiner = styled.div`
 `;
 
 export default function App() {
-  const [isSideBar, setIsSideBar] = useState<boolean>(false);
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <AppContainer id="app">
-        <Header setIsSideBar={setIsSideBar} />
+        <Header />
         <ViewContiner>
-          {isSideBar && <SideBar />}
           <Router />
         </ViewContiner>
       </AppContainer>

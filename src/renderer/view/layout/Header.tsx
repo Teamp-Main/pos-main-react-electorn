@@ -28,14 +28,10 @@ const HeaderConteiner = styled.div`
   }
 `;
 
-interface IProps {
-  setIsSideBar: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const Header = ({ setIsSideBar }: IProps) => {
+const Header = () => {
   return (
     <HeaderConteiner>
-      <button type="button" onClick={() => setIsSideBar(prev => !prev)}>
+      <button type="button">
         <img src={burger} alt="burger" />
       </button>
       <div className="brand-mark-form">

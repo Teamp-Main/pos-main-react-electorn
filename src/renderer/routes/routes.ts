@@ -13,15 +13,11 @@ interface RouterDefine {
 
 const ROUTER: RouterDefine[] = [
   {
-    path: '/login',
-    Component: Login,
-  },
-  {
-    path: '/sign-up',
-    Component: SignUp,
-  },
-  {
     path: '/',
+    Component: Home,
+  },
+  {
+    path: '/home',
     Component: Home,
   },
   {

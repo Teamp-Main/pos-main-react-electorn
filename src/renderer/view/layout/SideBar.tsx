@@ -28,6 +28,12 @@ const MainListContiner = styled.ul`
       width: 100%;
       color: white;
     }
+    > a {
+      margin: 0 1rem;
+      padding: 1rem 0;
+      width: 100%;
+      color: white;
+    }
   }
   > li:hover {
     background-color: ${props => props.theme.background.bule};
@@ -42,11 +48,11 @@ const SubListContiner = styled.ul`
   gap: 10px;
 
   > li {
-    > span {
+    > a {
       font-size: 25px;
       color: ${props => props.theme.font.noSelect};
     }
-    > span:hover {
+    > a:hover {
       color: white;
     }
   }
@@ -57,23 +63,29 @@ const SideBar = () => {
     <SideBarContainer>
       <MainListContiner>
         <li>
-          <span to="/home">홈</span>
+          <Link to="/home">홈</Link>
         </li>
         <li>
           <span>매장설정</span>
           <SubListContiner>
             <li>
-              <span to="/product/setting/table">테이블 설정</span>
+              <Link to="/product/setting/table">테이블 설정</Link>
             </li>
             <li>
-              <span to="/product/setting/product">상품설정</span>
+              <Link to="/product/setting/product">상품설정</Link>
             </li>
             <li>
-              <span to="/product/setting/product/side">
+              <Link to="/product/setting/product/side">
                 상품 사이드 메뉴 설정
-              </span>
+              </Link>
             </li>
           </SubListContiner>
+        </li>
+        <li>
+          <Link to="/login">로그인</Link>
+        </li>
+        <li>
+          <Link to="/sign-up">회원가입</Link>
         </li>
       </MainListContiner>
     </SideBarContainer>
