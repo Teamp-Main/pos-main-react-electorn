@@ -4,7 +4,9 @@ import styled from 'styled-components';
 
 const ButtonContainer = styled.button<{ isActive: boolean }>`
   background-color: ${props =>
-    props.isActive ? props.theme.main.purple : props.theme.main.gray};
+    props.isActive
+      ? props.theme.background.purple
+      : props.theme.background.gray};
   border: none;
   width: 100%;
   height: 100%;

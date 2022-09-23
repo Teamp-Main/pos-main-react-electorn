@@ -2,12 +2,16 @@ import 'styled-components';
 
 declare module 'styled-components' {
   interface DefaultTheme {
-    main: {
+    background: {
       purple: string;
       gray: string;
+      navy: string;
+      lightNavy: string;
+      bule: string;
     };
-    font:{
-      label:string
-    }
+    font: {
+      label: string;
+      noSelect: string;
+    };
   }
 }
