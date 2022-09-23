@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import InputButton from './input-button';
 
@@ -9,7 +8,7 @@ interface IProps {
   onClick: () => void;
   email_state: string;
   email_form_state: boolean;
-  setState: React.Dispatch<React.SetStateAction<string>>;
+  setState: (ref: string) => void;
   inputType: 'text';
 }
 
@@ -17,7 +16,7 @@ const EmailInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  .text {
+  .email-text {
     font-size: 11px;
     color: red;
   }
@@ -33,32 +32,21 @@ const EmailComponent = ({
   inputType,
   email_form_state,
 }: IProps) => {
-  if (email_form_state === false) {
-    return (
-      <EmailInputContainer>
-        <InputButton
-          item={item}
-          label={label}
-          isActive={isActive}
-          onClick={onClick}
-          state={email_state}
-          setState={setState}
-          inputType={inputType}
-        />
-        <span className="text">이메일 형식이 맞지 않습니다.</span>
-      </EmailInputContainer>
-    );
-  }
   return (
-    <InputButton
-      item={item}
-      label={label}
-      isActive={isActive}
-      onClick={onClick}
-      state={email_state}
-      setState={setState}
-      inputType={inputType}
-    />
+    <EmailInputContainer>
+      <InputButton
+        item={item}
+        label={label}
+        isActive={isActive}
+        onClick={onClick}
+        state={email_state}
+        setState={setState}
+        inputType={inputType}
+      />
+      {!email_form_state && (
+        <span className="email-text">이메일 형식이 맞지 않습니다.</span>
+      )}
+    </EmailInputContainer>
   );
 };
 
