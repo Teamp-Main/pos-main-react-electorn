@@ -1,5 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsShow } from 'renderer/store/eventReduser';
 import burger from '../../assets/img/burger.svg';
 import ArrowButtom from '../../assets/img/arrow_buttom.svg';
 
@@ -29,9 +30,17 @@ const HeaderConteiner = styled.div`
 `;
 
 const Header = () => {
+  const dispath = useDispatch();
+  const isShow = useSelector(state => state.tagEvent.tagShowEvent.isSideBar);
+
   return (
     <HeaderConteiner>
-      <button type="button">
+      <button
+        type="button"
+        onClick={() => {
+          dispath(setIsShow(!isShow));
+        }}
+      >
         <img src={burger} alt="burger" />
       </button>
       <div className="brand-mark-form">

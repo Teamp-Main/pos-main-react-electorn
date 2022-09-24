@@ -13,12 +13,7 @@ const HomeWrapper = styled.div`
 `;
 
 const Home = () => {
-  return (
-    <HomeWrapper>
-      <Link to="/login">login</Link>
-      <Link to="/sign-up">sign-up</Link>
-    </HomeWrapper>
-  );
+  return <HomeWrapper />;
 };
 
 export default Home;

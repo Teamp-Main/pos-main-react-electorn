@@ -55,7 +55,7 @@ const ModalContainer = styled.div`
   .modal > section > footer button {
     padding: 6px 12px;
     color: #fff;
-    background-color: ${props => props.theme.main.purple};
+    background-color: ${props => props.theme.background.purple};
     border-radius: 5px;
     font-size: 13px;
   }
