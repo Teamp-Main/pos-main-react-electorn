@@ -15,7 +15,7 @@ const MainListContiner = styled.ul`
   display: flex;
   flex-direction: column;
   font-size: 30px;
-  gap: 10px;
+  gap: 1rem;
 
   > li {
     cursor: pointer;

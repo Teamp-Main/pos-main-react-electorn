@@ -15,11 +15,13 @@ import ROUTER from './routes';
 
 const RouterContainer = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
 `;
 
 const ComponentsWrapper = styled.div`
   width: 100%;
+  height: 100%;
 `;
 
 const Router = () => {

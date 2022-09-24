@@ -12,13 +12,12 @@ import SideBar from './view/layout/SideBar';
 
 const AppContainer = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
 `;
 
 const ViewContiner = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
 `;
 
 export default function App() {
