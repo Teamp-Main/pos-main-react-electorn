@@ -8,6 +8,9 @@ const theme: DefaultTheme = {
     lightNavy: '#32373C',
     bule: '#0073AA',
   },
+  border: {
+    purple: '#706FD3',
+  },
   font: {
     label: '#111',
     noSelect: '#ddd',

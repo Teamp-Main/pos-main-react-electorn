@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {
   HashRouter as ReactRouter,
   Routes,
@@ -13,14 +15,19 @@ import ROUTER from './routes';
 
 const RouterContainer = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
 `;
 
 const ComponentsWrapper = styled.div`
   width: 100%;
+  height: 100%;
 `;
 
 const Router = () => {
+  // 사이드바 상태관리
+  const isShow = useSelector(state => state.tagEvent.tagShowEvent.isSideBar);
+
   return (
     <ReactRouter>
       <Routes>
@@ -34,7 +41,7 @@ const Router = () => {
             path={path}
             element={
               <RouterContainer>
-                <SideBar />
+                {isShow && <SideBar />}
                 <ComponentsWrapper>
                   <Component />
                 </ComponentsWrapper>

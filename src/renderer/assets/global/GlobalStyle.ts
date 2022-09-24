@@ -3,7 +3,13 @@ import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
+  html{
+    width: 100%;
+    height: 100%;
+  }
   body{
+    width: 100%;
+    height: 100%;
     box-sizing: border-box;
     h1{
       font-size: 1.3rem;

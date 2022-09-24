@@ -34,7 +34,7 @@ const ModalContainer = styled.div`
   }
   .modal > section > header button {
     position: absolute;
-    top: 15px;
+  top: 15px;
     right: 15px;
     width: 30px;
     font-size: 21px;
@@ -55,7 +55,7 @@ const ModalContainer = styled.div`
   .modal > section > footer button {
     padding: 6px 12px;
     color: #fff;
-    background-color: ${props => props.theme.main.purple};
+    background-color: ${props => props.theme.background.purple};
     border-radius: 5px;
     font-size: 13px;
   }
@@ -96,7 +96,7 @@ interface IProps {
 
 const Modal = ({ open, close, header, text, btntext, exit }: IProps) => {
   return (
-    <ModalContainer>
+    <ModalContainer>yarn add react-redux
       <div className={open ? 'openModal modal' : 'modal'}>
         {open ? (
           <section>

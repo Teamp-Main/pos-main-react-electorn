@@ -9,6 +9,10 @@ declare module 'styled-components' {
       lightNavy: string;
       bule: string;
     };
+    border: {
+      purple: string;
+    };
+
     font: {
       label: string;
       noSelect: string;
