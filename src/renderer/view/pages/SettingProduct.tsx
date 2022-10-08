@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Alert } from '../components/common/Modal';
 import CreateCartegoryModal from '../components/settingProduct/CreateCartegoryModal';
 
 const SettingProductContainer = styled.div`
@@ -7,6 +8,7 @@ const SettingProductContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
 `;
 
 const CategoryContainer = styled.div`
@@ -88,7 +90,13 @@ interface ProductDefint {
 }
 
 const SettingProduct = () => {
-  const [currentCartegory, setCurrentCartegory] = useState<number>(0);
+  const [currentCartegory, setCurrentCartegory] = useState<any[]>([
+    {
+      name: '기본',
+    },
+  ]);
+
+  const [tab, setTab] = useState(0);
   const [itemState, setItmeState] = useState<ProductDefint[]>([
     {
       name: '참이슬',
@@ -120,43 +128,36 @@ const SettingProduct = () => {
     },
   ]);
   const [isCartegoryMdoal, setIsCartegoryModal] = useState<boolean>(false);
+
+  const onSubmit = (array: any[]) => {
+    const currentCartegoryCopy = [...currentCartegory];
+
+    setCurrentCartegory([...currentCartegoryCopy, ...array]);
+    return Alert.fire('등록되었습니다.');
+  };
+
+  const createCartegory = () => {
+    return Alert.fire({
+      title: <CreateCartegoryModal onSubmit={onSubmit} />,
+      showConfirmButton: false,
+      showCancelButton: false,
+      width: '50rem',
+    });
+  };
+
   return (
     <SettingProductContainer>
-      <CreateCartegoryModal />
-
       <CategoryContainer>
         <ul>
-          <li
-            className={currentCartegory === 0 ? 'selected' : ''}
-            onClick={() => setCurrentCartegory(0)}
-          >
-            상품1
-          </li>
-          <li
-            className={currentCartegory === 1 ? 'selected' : ''}
-            onClick={() => setCurrentCartegory(1)}
-          >
-            상품2
-          </li>
-          <li
-            className={currentCartegory === 2 ? 'selected' : ''}
-            onClick={() => setCurrentCartegory(2)}
-          >
-            상품3
-          </li>
-          <li
-            className={currentCartegory === 3 ? 'selected' : ''}
-            onClick={() => setCurrentCartegory(3)}
-          >
-            상품4
-          </li>
-          <li
-            className={currentCartegory === 4 ? 'selected' : ''}
-            onClick={() => setCurrentCartegory(4)}
-          >
-            상품5
-          </li>
-          <li>+카테고리</li>
+          {currentCartegory.map((item, index) => (
+            <li
+              className={tab === index ? 'selected' : ''}
+              onClick={() => setTab(index)}
+            >
+              {item.name}
+            </li>
+          ))}
+          <li onClick={() => createCartegory()}>+카테고리</li>
         </ul>
       </CategoryContainer>
       <ItemContainer>

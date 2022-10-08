@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 const ModalContainer = styled.div`
   .modal {
@@ -34,7 +36,7 @@ const ModalContainer = styled.div`
   }
   .modal > section > header button {
     position: absolute;
-  top: 15px;
+    top: 15px;
     right: 15px;
     width: 30px;
     font-size: 21px;
@@ -96,7 +98,8 @@ interface IProps {
 
 const Modal = ({ open, close, header, text, btntext, exit }: IProps) => {
   return (
-    <ModalContainer>yarn add react-redux
+    <ModalContainer>
+      yarn add react-redux
       <div className={open ? 'openModal modal' : 'modal'}>
         {open ? (
           <section>
@@ -118,5 +121,7 @@ const Modal = ({ open, close, header, text, btntext, exit }: IProps) => {
     </ModalContainer>
   );
 };
+
+export const Alert = withReactContent(Swal);
 
 export default Modal;

@@ -4,7 +4,7 @@
     ".prettierrc": "jsonc",
     ".eslintignore": "ignore"
   },
-  
+
   "eslint.validate": [
     "javascript",
     "javascriptreact",
@@ -26,5 +26,122 @@
     "test/**/__snapshots__": true,
     "package-lock.json": true,
     "*.{css,sass,scss}.d.ts": true
-  }
+  },
+    "better-comments.multilineComments": true,
+    "better-comments.tags": [
+        {
+          //caution YELLOW
+          "tag": "**",
+          "color": "#090300",
+          "strikethrough": false,
+          "underline": false,
+          "backgroundColor": "#FDED02",
+          "bold": false,
+          "italic": false
+        },
+        {
+          // danger RED
+          "tag": "!",
+          "color": "#090300",
+          "strikethrough": false,
+          "underline": false,
+          "backgroundColor": "#DB2D20",
+          "bold": false,
+          "italic": false
+        },
+        {
+          // question BLUE
+          "tag": "?",
+          "color": "#3498DB",
+          "strikethrough": false,
+          "underline": false,
+          "backgroundColor": "transparent",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "tag": "//",
+          "color": "#474747",
+          "strikethrough": true,
+          "underline": false,
+          "backgroundColor": "transparent",
+          "bold": false,
+          "italic": false
+        },
+        {
+          // to do YELLOW
+          "tag": "todo",
+          "color": "#090300",
+          "strikethrough": false,
+          "underline": false,
+          "backgroundColor": "#FDED02",
+          "bold": true,
+          "italic": false
+        },
+        {
+          // general GREEN
+          "tag": "*",
+          "color": "#98C379",
+          "strikethrough": false,
+          "underline": false,
+          "backgroundColor": "transparent",
+          "bold": false,
+          "italic": false
+        },
+        {
+          // parameter BLUE
+          "tag": "params",
+          "color": "#01A0E4",
+          "strikethrough": false,
+          "underline": false,
+          "backgroundColor": "transparent",
+          "bold": false,
+          "italic": false
+        },
+        {
+          "tag": "variable",
+          "color": "#090300",
+          "strikethrough": false,
+          "underline": false,
+          "backgroundColor": "#45da00",
+          "bold": true,
+          "italic": true
+        },
+        {
+          "tag": "function",
+          "color": "#F7F7F7",
+          "strikethrough": false,
+          "underline": false,
+          "backgroundColor": "#00025a",
+          "bold": true,
+          "italic": true
+        },
+        {
+          "tag": "render",
+          "color": "#090300",
+          "strikethrough": false,
+          "underline": false,
+          "backgroundColor": "#ee6e05",
+          "bold": true,
+          "italic": true
+        },
+        {
+          "tag": "styles",
+          "color": "#090300",
+          "strikethrough": false,
+          "underline": false,
+          "backgroundColor": "#ff00c8",
+          "bold": true,
+          "italic": true
+        },
+        {
+          "tag": "child",
+          "color": "#090300",
+          "strikethrough": false,
+          "underline": false,
+          "backgroundColor": "#079cf3",
+          "bold": true,
+          "italic": true
+        }
+      ],
 }
