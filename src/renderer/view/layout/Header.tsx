@@ -29,7 +29,7 @@ const HeaderConteiner = styled.div`
   }
 `;
 
-const Header = () => {
+function Header() {
   const dispath = useDispatch();
   const isShow = useSelector(state => state.tagEvent.tagShowEvent.isSideBar);
 
@@ -49,6 +49,6 @@ const Header = () => {
       </div>
     </HeaderConteiner>
   );
-};
+}
 
 export default Header;

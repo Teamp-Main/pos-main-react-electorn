@@ -23,7 +23,7 @@ interface IProps {
   setState: (ref: string) => void;
 }
 
-const InputButton = ({
+function InputButton({
   item,
   label,
   isActive,
@@ -31,7 +31,7 @@ const InputButton = ({
   inputType,
   setState,
   onClick,
-}: IProps) => {
+}: IProps) {
   return (
     <InputButtonWrapper>
       <div className="sign-up-flex-1">
@@ -47,6 +47,6 @@ const InputButton = ({
       </div>
     </InputButtonWrapper>
   );
-};
+}
 
 export default InputButton;

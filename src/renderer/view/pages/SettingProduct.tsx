@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import CreateCartegoryModal from '../components/settingProduct/CreateCartegoryModal';
 
@@ -37,13 +37,14 @@ const CategoryContainer = styled.div`
   }
 `;
 const ItemContainer = styled.div`
+  position: relative;
   height: 100%;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  padding: 3rem;
-  gap: 1rem;
+  padding: 3vw;
+  gap: 1vw;
   .product-item {
-    height: 270px;
+    height: 14.063vw;
     > img {
       width: 100%;
       height: 80%;
@@ -57,7 +58,7 @@ const ItemContainer = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 1rem 0;
+      padding: 1vw 0;
       justify-content: center;
     }
   }
@@ -69,16 +70,15 @@ const AddButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  bottom: 1rem;
-  right: 1rem;
-  width: 4rem;
-  height: 4rem;
-  border-radius: 5rem;
+  bottom: 1vw;
+  right: 1vw;
+  width: 3vw;
+  height: 3vw;
+  border-radius: 5vw;
   background-color: ${props => props.theme.background.purple};
   > span {
     color: white;
-    padding-top: 0.5rem;
-    font-size: 3rem;
+    font-size: 2vw;
   }
 `;
 
@@ -87,80 +87,61 @@ interface ProductDefint {
   price: number;
 }
 
-const SettingProduct = () => {
+function SettingProduct() {
   const [currentCartegory, setCurrentCartegory] = useState<number>(0);
-  const [itemState, setItmeState] = useState<ProductDefint[]>([
-    {
-      name: '참이슬',
-      price: 5000,
-    },
-    {
-      name: '참이슬',
-      price: 5000,
-    },
-    {
-      name: '참이슬',
-      price: 5000,
-    },
-    {
-      name: '참이슬',
-      price: 5000,
-    },
-    {
-      name: '참이슬',
-      price: 5000,
-    },
-    {
-      name: '참이슬',
-      price: 5000,
-    },
-    {
-      name: '참이슬',
-      price: 5000,
-    },
-  ]);
+  const [itemState, setItmeState] = useState<ProductDefint[]>([]);
+
+  useEffect(() => {
+    setItmeState([
+      {
+        name: '참이슬',
+        price: 5000,
+      },
+      {
+        name: '참이슬',
+        price: 5000,
+      },
+      {
+        name: '참이슬',
+        price: 5000,
+      },
+      {
+        name: '참이슬',
+        price: 5000,
+      },
+      {
+        name: '참이슬',
+        price: 5000,
+      },
+      {
+        name: '참이슬',
+        price: 5000,
+      },
+      {
+        name: '참이슬',
+        price: 5000,
+      },
+    ]);
+  }, []);
+
   const [isCartegoryMdoal, setIsCartegoryModal] = useState<boolean>(false);
   return (
     <SettingProductContainer>
-      <CreateCartegoryModal />
-
       <CategoryContainer>
         <ul>
-          <li
-            className={currentCartegory === 0 ? 'selected' : ''}
-            onClick={() => setCurrentCartegory(0)}
-          >
-            상품1
+          <li className={currentCartegory === 0 ? 'selected' : ''}>
+            <button type="button" onClick={() => setCurrentCartegory(0)}>
+              상품1
+            </button>
           </li>
-          <li
-            className={currentCartegory === 1 ? 'selected' : ''}
-            onClick={() => setCurrentCartegory(1)}
-          >
-            상품2
-          </li>
-          <li
-            className={currentCartegory === 2 ? 'selected' : ''}
-            onClick={() => setCurrentCartegory(2)}
-          >
-            상품3
-          </li>
-          <li
-            className={currentCartegory === 3 ? 'selected' : ''}
-            onClick={() => setCurrentCartegory(3)}
-          >
-            상품4
-          </li>
-          <li
-            className={currentCartegory === 4 ? 'selected' : ''}
-            onClick={() => setCurrentCartegory(4)}
-          >
-            상품5
-          </li>
+
           <li>+카테고리</li>
         </ul>
       </CategoryContainer>
       <ItemContainer>
-        <AddButton>
+        <CreateCartegoryModal isShow={isCartegoryMdoal} />
+
+        <AddButton onClick={() => setIsCartegoryModal(true)}>
           <span>+</span>
         </AddButton>
 
@@ -176,6 +157,6 @@ const SettingProduct = () => {
       </ItemContainer>
     </SettingProductContainer>
   );
-};
+}
 
 export default SettingProduct;

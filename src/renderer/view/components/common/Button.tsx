@@ -27,7 +27,7 @@ interface IProps {
   style?: React.CSSProperties;
 }
 
-const Button = ({ item, onClick, isActive, style }: IProps) => {
+function Button({ item, onClick, isActive, style }: IProps) {
   return (
     <ButtonContainer
       style={style}
@@ -37,6 +37,6 @@ const Button = ({ item, onClick, isActive, style }: IProps) => {
       <span>{item}</span>{' '}
     </ButtonContainer>
   );
-};
+}
 
 export default Button;

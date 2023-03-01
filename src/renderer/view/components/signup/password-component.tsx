@@ -20,14 +20,14 @@ const PwInputContainer = styled.div`
   }
 `;
 
-const PwComponent = ({
+function PwComponent({
   label,
   pw_state,
   setState,
   inputType,
   form_check_state,
   text,
-}: IProps) => {
+}: IProps) {
   return (
     <PwInputContainer>
       <Input
@@ -39,6 +39,6 @@ const PwComponent = ({
       {!form_check_state && <span className="pwd-text">{text}</span>}
     </PwInputContainer>
   );
-};
+}
 
 export default PwComponent;

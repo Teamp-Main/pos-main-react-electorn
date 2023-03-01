@@ -34,7 +34,7 @@ const ModalContainer = styled.div`
   }
   .modal > section > header button {
     position: absolute;
-  top: 15px;
+    top: 15px;
     right: 15px;
     width: 30px;
     font-size: 21px;
@@ -87,28 +87,29 @@ const ModalContainer = styled.div`
 
 interface IProps {
   open: boolean;
-  exit: (setState: React.Dispatch<React.SetStateAction<boolean>>) => void;
+  exit: () => void;
   close: () => void;
   header: string;
   text: string;
   btntext: string;
 }
 
-const Modal = ({ open, close, header, text, btntext, exit }: IProps) => {
+function Modal({ open, close, header, text, btntext, exit }: IProps) {
   return (
-    <ModalContainer>yarn add react-redux
+    <ModalContainer>
+      yarn add react-redux
       <div className={open ? 'openModal modal' : 'modal'}>
         {open ? (
           <section>
             <header>
               {header}
-              <button className="close" onClick={exit}>
+              <button type="button" className="close" onClick={exit}>
                 &times;
               </button>
             </header>
             <main>{text}</main>
             <footer>
-              <button className="close" onClick={close}>
+              <button type="button" className="close" onClick={close}>
                 {btntext}
               </button>
             </footer>
@@ -117,6 +118,6 @@ const Modal = ({ open, close, header, text, btntext, exit }: IProps) => {
       </div>
     </ModalContainer>
   );
-};
+}
 
 export default Modal;

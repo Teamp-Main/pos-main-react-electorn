@@ -38,7 +38,7 @@ const InputContainer = styled.fieldset`
   }
 `;
 
-interface IProps {
+interface InputProps {
   label: string;
   state: string;
   setState: (ref: string) => void;
@@ -46,7 +46,7 @@ interface IProps {
   style?: React.CSSProperties;
 }
 
-const Input = ({ state, setState, inputType, label, style }: IProps) => {
+function Input({ state, setState, inputType, label, style }: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [showPwd, setShowPwd] = useState<boolean>(false);
   const checkingType = () => {
@@ -79,6 +79,6 @@ const Input = ({ state, setState, inputType, label, style }: IProps) => {
       </div>
     </InputContainer>
   );
-};
+}
 
 export default Input;

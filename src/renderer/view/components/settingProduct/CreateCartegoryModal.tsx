@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-const ModalContainer = styled.div`
+const ModalContainer = styled.div<{ isShow: boolean }>`
+  display: ${props => (props.isShow ? 'block' : 'none')};
   position: absolute;
   width: 70%;
   height: 60%;
@@ -8,9 +9,11 @@ const ModalContainer = styled.div`
   left: 15%;
   background-color: #fff;
 `;
-
-const CreateCartegoryModal = () => {
-  return <ModalContainer>createCartegoryModal</ModalContainer>;
-};
+interface CreateCartegoryModalProps {
+  isShow: boolean;
+}
+function CreateCartegoryModal({ isShow }: CreateCartegoryModalProps) {
+  return <ModalContainer isShow={isShow}>createCartegoryModal</ModalContainer>;
+}
 
 export default CreateCartegoryModal;

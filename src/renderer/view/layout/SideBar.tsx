@@ -15,7 +15,7 @@ const MainListContiner = styled.ul`
   display: flex;
   flex-direction: column;
   font-size: 30px;
-  gap: 1rem;
+  gap: 1vw;
 
   > li {
     cursor: pointer;
@@ -23,14 +23,14 @@ const MainListContiner = styled.ul`
     flex-direction: column;
     width: 100%;
     > span {
-      margin: 0 1rem;
-      padding: 1rem 0;
+      margin: 0 1vw;
+      padding: 1vw 0;
       width: 100%;
       color: white;
     }
     > a {
-      margin: 0 1rem;
-      padding: 1rem 0;
+      margin: 0 1vw;
+      padding: 1vw 0;
       width: 100%;
       color: white;
     }
@@ -44,12 +44,12 @@ const SubListContiner = styled.ul`
   display: flex;
   flex-direction: column;
   background-color: ${props => props.theme.background.lightNavy};
-  padding: 1rem;
-  gap: 10px;
+  padding: 1vw;
+  gap: 0.5vw;
 
   > li {
     > a {
-      font-size: 25px;
+      font-size: 1.302vw;
       color: ${props => props.theme.font.noSelect};
     }
     > a:hover {

@@ -22,7 +22,7 @@ const EmailInputContainer = styled.div`
   }
 `;
 
-const EmailComponent = ({
+function EmailComponent({
   item,
   label,
   isActive,
@@ -31,7 +31,7 @@ const EmailComponent = ({
   setState,
   inputType,
   email_form_state,
-}: IProps) => {
+}: IProps) {
   return (
     <EmailInputContainer>
       <InputButton
@@ -48,6 +48,6 @@ const EmailComponent = ({
       )}
     </EmailInputContainer>
   );
-};
+}
 
 export default EmailComponent;
