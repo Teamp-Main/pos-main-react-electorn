@@ -1,4 +1,5 @@
 // import React from 'react';
+import { createAuth } from 'api/signUp';
 import { regEmail, regPwd } from 'data/rex';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -42,7 +43,7 @@ const SignUpContainer = styled.div`
   }
 `;
 
-const SignUp = () => {
+function SignUp() {
   const [nameinput, setNameInput] = useState<string>('');
   const [idinput, setIdInput] = useState<string>('');
   const [pwinput, setPwInput] = useState<string>('');
@@ -112,6 +113,10 @@ const SignUp = () => {
         break;
       }
     }
+  };
+
+  const onClickRegister = async () => {
+    await createAuth({});
   };
 
   const matchPW = (ref: string) => {
@@ -226,6 +231,6 @@ const SignUp = () => {
       </SignUpContainer>
     </SignUpWrapper>
   );
-};
+}
 
 export default SignUp;
